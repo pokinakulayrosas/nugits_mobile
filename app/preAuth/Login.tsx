@@ -101,6 +101,7 @@ export default function Login() {
             <Text className="text-[#384484] font-medium text-sm">Forgot Password?</Text>
           </TouchableOpacity>
 
+            {/* push sample */}
          
           <TouchableOpacity
             className="mt-10 w-10/12 rounded-full overflow-hidden shadow-md active:opacity-80"
