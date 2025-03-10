@@ -32,7 +32,7 @@ export default function RootLayout() {
     <View style={{ flex: 1 }}> 
       <StatusBar backgroundColor="#384484" translucent />
       <Stack screenOptions={{ headerShown: false }} initialRouteName="preAuth/Login">
-        <Stack.Screen name="/preAuth/Login" />
+        <Stack.Screen name="preAuth/Login" />
       </Stack>
       {/* <PortalHost /> */}
     </View>

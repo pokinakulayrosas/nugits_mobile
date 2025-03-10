@@ -7,7 +7,6 @@ import { z } from "zod";
 
 import { Input } from "~/components/ui/input";
 import { Text } from "~/components/ui/text";
-import { Button } from "~/components/ui/button";
 import { LinearGradient } from "expo-linear-gradient";
 
 const loginSchema = z.object({
@@ -17,7 +16,7 @@ const loginSchema = z.object({
 
 export default function Login() {
   const router = useRouter();
-  const [bgColor, setBgColor] = useState("#F5F7FF"); // Default Background Color
+  const [bgColor, setBgColor] = useState("#F5F7FF"); 
 
   const methods = useForm({
     resolver: zodResolver(loginSchema),
@@ -28,7 +27,6 @@ export default function Login() {
     console.log("Form Data:", data);
   });
 
-  // Mood-Based Background Colors
   const moodColors = {
     "😡": "#FF4D4D", // Angry - Red
     "😢": "#4D79FF", // Sad - Blue
@@ -40,7 +38,6 @@ export default function Login() {
 
   return (
     <View className="flex-1 px-6 justify-center" style={{ backgroundColor: bgColor }}>
-      {/* Logo */}
       <View className="items-center mb-6">
         <Image
           source={require("../../assets/images/logo.png")}
@@ -97,7 +94,7 @@ export default function Login() {
             )}
           </View>
 
-          <TouchableOpacity className="self-end mr-10 mt-2" onPress={() => router.push("/ForgotPassword")}>
+          <TouchableOpacity className="self-end mr-10 mt-2" onPress={() => router.push("/preAuth/ForgotPassword")}>
             <Text className="text-[#384484] font-medium text-sm">Forgot Password?</Text>
           </TouchableOpacity>
 
@@ -120,7 +117,7 @@ export default function Login() {
       </FormProvider>
 
       {/* Signup Link */}
-      <TouchableOpacity className="mt-4" onPress={() => router.push("/Signup")}>
+      <TouchableOpacity className="mt-4" onPress={() => router.push("/preAuth/Signup")}>
         <Text className="text-center text-[#384484]">
           Don't have an account?{" "}
           <Text className="underline text-[#384484] font-bold"> Sign up </Text>
