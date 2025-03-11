@@ -102,7 +102,7 @@ export default function Login() {
          
           <TouchableOpacity
             className="mt-10 w-10/12 rounded-full overflow-hidden shadow-md active:opacity-80"
-            onPress={onSubmit}
+            onPress={() => router.push("/postAuth/Homepage")}
           >
             <LinearGradient
               colors={["#1E2A5A", "#384484"]}
