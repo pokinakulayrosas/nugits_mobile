@@ -19,6 +19,48 @@ export default function Layout() {
             title: 'overview',
           }}
         />
+         <Drawer.Screen
+          name="Journal" 
+          options={{
+            drawerLabel: 'Journal',
+            title: 'overview',
+          }}
+        />
+        <Drawer.Screen
+          name="Calendar" 
+          options={{
+            drawerLabel: 'Calendar',
+            title: 'overview',
+          }}
+        />
+        <Drawer.Screen
+          name="SmartChat" 
+          options={{
+            drawerLabel: 'SmartChat',
+            title: 'overview',
+          }}
+        />
+        <Drawer.Screen
+          name="Clearance" 
+          options={{
+            drawerLabel: 'Clearance',
+            title: 'overview',
+          }}
+        />
+        <Drawer.Screen
+          name="ScheduleViewer" 
+          options={{
+            drawerLabel: 'Schedule Viewer',
+            title: 'overview',
+          }}
+        />
+        <Drawer.Screen
+          name="Meditation" 
+          options={{
+            drawerLabel: 'Meditation',
+            title: 'overview',
+          }}
+        />
       </Drawer>
     </GestureHandlerRootView>
   );
