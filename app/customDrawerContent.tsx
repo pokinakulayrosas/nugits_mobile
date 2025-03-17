@@ -17,7 +17,7 @@ export default function customDrawerContent(props: any) {
       <DrawerContentScrollView {...props}>
         <View className="flex flex-row">
             <Image
-                    source={require("../../assets/images/logo.png")}
+                    source={require("../assets/images/logo.png")}
                     className="w-[75px] h-[75px] mb-10 top-10 rounded-full"
                   />
                   <Text className="text-3xl font-semibold text-white ml-10 top-16 ">NU-GITS</Text>

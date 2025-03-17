@@ -33,15 +33,15 @@ const Carousel = () => {
   const carouselData = [
     {
       id: "1",
-      image: require("../../../assets/home_image/carousel_1.jpg"),
+      image: require("../../assets/home_image/carousel_1.jpg"),
     },
     {
       id: "2",
-      image: require("../../../assets/home_image/carousel_2.jpg"),
+      image: require("../../assets/home_image/carousel_2.jpg"),
     },
     {
       id: "3",
-      image: require("../../../assets/home_image/carousel_2.jpg"),
+      image: require("../../assets/home_image/carousel_1.jpg"),
     },
   ];
 

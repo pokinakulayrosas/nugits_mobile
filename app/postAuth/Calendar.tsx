@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { View, Text, FlatList, Image } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 
 type ItemType = {
@@ -7,25 +7,26 @@ type ItemType = {
   time: string;
 };
 
+
+
 const CalendarScreen = () => {
+  const [selectedDate, setSelectedDate] = useState('');
+
   const events: { [key: string]: ItemType[] } = {
-    '2024-04-29': [{ name: 'Meeting with client', time: '10:00 AM' }],
+    '2024-04-29': [{ name: 'Therapy Session', time: '10:00 AM' }],
     '2024-04-30': [
-      { name: 'Team brainstorming session', time: '9:00 AM' },
-      { name: 'Project presentation', time: '2:00 PM' },
-      { name: 'Project presentation', time: '5:00 PM' },
+      { name: 'Mindfulness Meditation', time: '8:00 AM' },
+      { name: 'Support Group Meeting', time: '6:00 PM' },
     ],
-    '2025-01-01': [{ name: 'New Year Celebration', time: '12:00 AM' }],
+    '2025-01-01': [{ name: 'New Year Reflection', time: '12:00 AM' }],
     '2025-03-02': [
-      { name: 'Team brainstorming session', time: '9:00 AM' },
-      { name: 'Project presentation', time: '2:00 PM' },
+      { name: 'Self-care Planning', time: '9:00 AM' },
+      { name: 'Wellness Check-in', time: '2:00 PM' },
     ],
   };
 
-  const [selectedDate, setSelectedDate] = useState('');
-
   const markedDates = Object.keys(events).reduce((acc, date) => {
-    acc[date] = { marked: true, dotColor: '#FF69B4' };
+    acc[date] = { marked: true, dotColor: '#dbba44' };
     return acc;
   }, {} as { [key: string]: { marked: boolean; dotColor: string; selected?: boolean; selectedColor?: string } });
 
@@ -33,65 +34,75 @@ const CalendarScreen = () => {
     markedDates[selectedDate] = {
       ...markedDates[selectedDate],
       selected: true,
-      selectedColor: '#FF69B4',
+      selectedColor: '#384484',
     };
   }
 
   return (
-    <View className="flex-1 p-4 bg-[#F0F8FF]">
-     <View className='flex-1'>
-      <Text className="text-2xl font-bold text-center">Welcome, Alex!</Text>
-      <Text className="text-2xl font-bold text-center">Check your events</Text>
+    <FlatList
+      ListHeaderComponent={
+        <View className="flex-1 bg-[#F0F8FF] px-4 pt-8">
+          <View className="mb-6 p-4 bg-white rounded-2xl shadow-lg border border-gray-200 flex flex-row">
+          <Text className='text-2xl text-[#384484] font-semibold'>Your calendar of <Text className='italic font-semibold'>events</Text></Text>
+            <Image
+              source={require("../../assets/eyes/half_circle.png")}
+              style={{ width: 80, height: 80, marginLeft: 'auto', marginTop: -30 }}
+            />
+          </View>
 
 
-     </View>
-      
-      <Calendar
-        onDayPress={(day: { dateString: React.SetStateAction<string>; }) => setSelectedDate(day.dateString)}
-        markedDates={markedDates}
-        theme={{
-          selectedDayBackgroundColor: '#FF69B4',
-          todayTextColor: '#FF69B4',
-          arrowColor: '#FF69B4',
-          textSectionTitleColor: '#FFFFFF', //text color
-          dayTextColor: '#FFFFFF', // text color
-          textDisabledColor: '#888888', // text color for disabled days
-          monthTextColor: '#FFFFFF', // text color for month
-          textDayFontWeight: '300',
-          textMonthFontWeight: 'bold',
-          textDayHeaderFontWeight: '500',
-          textDayFontSize: 16,
-          textMonthFontSize: 16,
-          textDayHeaderFontSize: 14,
-          calendarBackground: '#384484',
-        
-        }}
-        style={{
-          borderRadius: 10,}}
 
-      />
+          <Calendar
+            onDayPress={(day: { dateString: React.SetStateAction<string>; }) => setSelectedDate(day.dateString)}
+            markedDates={markedDates}
+            theme={{
+              selectedDayBackgroundColor: '#384484',
+              todayTextColor: '#384484',
+              arrowColor: '#384484',
+              textSectionTitleColor: '#000000',
+              dayTextColor: '#000000',
+              textDisabledColor: '#888888',
+              monthTextColor: '#000000',
+              textDayFontWeight: '300',
+              textMonthFontWeight: 'bold',
+              textDayHeaderFontWeight: '500',
+              textDayFontSize: 16,
+              textMonthFontSize: 16,
+              textDayHeaderFontSize: 14,
+              calendarBackground: '#FFFFFF',
 
-      <View className="mt-5 mx-4">
-        <Text className="text-lg font-bold">
-       {selectedDate || 'No date selected'}
-        </Text>
-
-        {selectedDate && events[selectedDate] ? (
-          <FlatList
-            data={events[selectedDate]}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => (
-              <View className="p-3 bg-white rounded-lg shadow-md my-2">
-                <Text className="font-bold">{item.name}</Text>
-                <Text className="text-gray-500">{item.time}</Text>
-              </View>
-            )}
+            }}
+            
+            style={{
+              borderRadius: 12,
+              elevation: 5,
+              shadowColor: '#000',
+              shadowOpacity: 0.2,
+              shadowOffset: { width: 0, height: 2 },
+              paddingBottom: 10,
+            }}
           />
-        ) : (
-          <Text className="text-gray-500 mt-2">No events for this day</Text>
-        )}
-      </View>
-    </View>
+
+          <View className="mt-6 ">
+            <Text className="text-xl font-semibold text-[#384484]">
+              {selectedDate ? `Events on ${selectedDate}` : 'Select a date'}
+            </Text>
+          </View>
+        </View>
+      }
+      data={selectedDate && events[selectedDate] ? events[selectedDate] : []}
+      keyExtractor={(_item, index) => index.toString()}
+      renderItem={({ item }) => (
+  
+        <View className="mt-3 mx-4 p-4 bg-white rounded-xl shadow-lg border border-gray-200">
+          <Text className="text-lg font-semibold text-[#384484]">{item.name}</Text>
+          <Text className="text-gray-600">{item.time}</Text>
+        </View>
+      )}
+      ListEmptyComponent={
+        <Text className="text-gray-500 mt-3 italic text-center">No events for this day</Text>
+      }
+    />
   );
 };
 
