@@ -20,7 +20,7 @@ export default function RootLayout() {
     }
   
     if (Platform.OS === "android") {
-      RNStatusBar.setBackgroundColor("pink");
+      RNStatusBar.setBackgroundColor("#384484");
     }
   
     setIsAppReady(true);
