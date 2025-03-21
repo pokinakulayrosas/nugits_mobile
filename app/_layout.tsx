@@ -14,7 +14,7 @@ export default function Layout() {
   // }, [router]);
     
   // development route
-    router.replace('/postAuth/Calendar'); // Redirect to preAuth route
+    router.replace('/preAuth/Welcome'); // Redirect to preAuth route
   }, [router]);
 
   return (
