@@ -1,45 +1,32 @@
-import { View, Text, TouchableOpacity, ScrollView } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  DimensionValue,
+} from "react-native";
+import React, { useState } from "react";
 import { useRouter } from "expo-router";
-import { ChevronDownIcon, ChevronLeftIcon } from "lucide-react-native";
+import { ChevronDownIcon } from "lucide-react-native";
 import { TextInput } from "react-native-paper";
+import CustomHeader from "../../components/CustomHeader";
 
 export default function Information() {
   const router = useRouter();
+  const [darkMode, setDarkMode] = useState(false);
+
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#F0F8FF" }}>
+    <View style={{ flex: 1, backgroundColor: darkMode ? "#222" : "#F0F8FF" }}>
+      <CustomHeader darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+
       <ScrollView
         contentContainerStyle={{ padding: 16 }}
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
       >
-        <TouchableOpacity
-          onPress={() => router.push("/postAuth/Profile")}
-          style={{
-            alignItems: "center",
-            paddingVertical: 12,
-            paddingHorizontal: 18,
-            borderRadius: 10,
-            backgroundColor: "#FFFFFF",
-            borderWidth: 1,
-            borderColor: "#E0E0E0",
-            shadowColor: "#000",
-            shadowOffset: { width: 0, height: 2 },
-            shadowOpacity: 0.08,
-            shadowRadius: 3,
-            elevation: 2,
-            width: 50,
-          }}
-          activeOpacity={0.8}
-        >
-          <ChevronLeftIcon size={20} color="#384484" />
-        </TouchableOpacity>
-
-        <Text className="text-black font-semibold text-lg px-2 mt-4">
-          Basic Information
-        </Text>
-
+        <Text className="font-semibold px-2 py-2 text-xl">Basic Information</Text>
         <View className="justify-center bg-white h-auto w-auto shadow-lg rounded-xl p-6 mb-6 mt-4">
           <View className="space-y-6 gap-6">
             <View className="flex flex-col">
@@ -50,13 +37,7 @@ export default function Information() {
                 value="Manuzon"
                 disabled
                 mode="outlined"
-                style={{
-                  width: "100%",
-                  height: 40,
-                  backgroundColor: "#F0F8FF",
-                  borderRadius: 8,
-                  fontSize: 14,
-                }}
+                style={inputStyles}
                 theme={inputTheme}
               />
             </View>
@@ -66,35 +47,23 @@ export default function Information() {
                 First Name <Text className="text-red-600">*</Text>
               </Text>
               <TextInput
-                value="Alexandra"
+                value="Alexandra Mae"
                 disabled
                 mode="outlined"
-                style={{
-                  width: "100%",
-                  height: 40,
-                  backgroundColor: "#F0F8FF",
-                  borderRadius: 8,
-                  fontSize: 14,
-                }}
+                style={inputStyles}
                 theme={inputTheme}
               />
             </View>
 
             <View className="flex flex-col">
               <Text className="text-md font-semibold text-black mb-1">
-                Middle Name <Text className="text-red-600">*</Text>
+                Middle Name
               </Text>
               <TextInput
                 value="Anala"
                 disabled
                 mode="outlined"
-                style={{
-                  width: "100%",
-                  height: 40,
-                  backgroundColor: "#F0F8FF",
-                  borderRadius: 8,
-                  fontSize: 14,
-                }}
+                style={inputStyles}
                 theme={inputTheme}
               />
             </View>
@@ -104,16 +73,10 @@ export default function Information() {
                 Suffix
               </Text>
               <TextInput
-                value=""
+                value="Anala"
                 disabled
                 mode="outlined"
-                style={{
-                  width: "100%",
-                  height: 40,
-                  backgroundColor: "#F0F8FF",
-                  borderRadius: 8,
-                  fontSize: 14,
-                }}
+                style={inputStyles}
                 theme={inputTheme}
               />
             </View>
@@ -126,13 +89,7 @@ export default function Information() {
                 value="Filipino"
                 disabled
                 mode="outlined"
-                style={{
-                  width: "100%",
-                  height: 40,
-                  backgroundColor: "#F0F8FF",
-                  borderRadius: 8,
-                  fontSize: 14,
-                }}
+                style={inputStyles}
                 theme={inputTheme}
               />
             </View>
@@ -143,15 +100,10 @@ export default function Information() {
                   Birthdate <Text className="text-red-600">*</Text>
                 </Text>
                 <TextInput
-                  value="31/12/2009"
+                  value="11/07/2002"
                   disabled
                   mode="outlined"
-                  style={{
-                    height: 40,
-                    backgroundColor: "#F0F8FF",
-                    borderRadius: 8,
-                    fontSize: 14,
-                  }}
+                  style={inputStyles}
                   theme={inputTheme}
                 />
               </View>
@@ -164,58 +116,54 @@ export default function Information() {
                   value="Catholic"
                   disabled
                   mode="outlined"
-                  style={{
-                    height: 40,
-                    backgroundColor: "#F0F8FF",
-                    borderRadius: 8,
-                    fontSize: 14,
-                  }}
+                  style={inputStyles}
                   theme={inputTheme}
                 />
+              </View>
+            </View>
+
+            <View className="flex-1">
+              <Text className="text-md font-semibold text-black mb-1">
+                Country of Birth <Text className="text-red-600">*</Text>
+              </Text>
+              <View className="relative">
+                <TextInput
+                  value="Philippines"
+                  disabled
+                  mode="outlined"
+                  style={inputStyles}
+                  theme={inputTheme}
+                />
+                <View className="absolute right-3 top-3">
+                  <ChevronDownIcon size={18} color="#A0AEC0" />
+                </View>
               </View>
             </View>
 
             <View className="flex-row gap-4">
               <View className="flex-1">
                 <Text className="text-md font-semibold text-black mb-1">
-                  Country of Birth <Text className="text-red-600">*</Text>
+                  Birthplace <Text className="text-red-600">*</Text>
                 </Text>
-                <View className="relative">
-                  <TextInput
-                    value="Philippines"
-                    disabled
-                    mode="outlined"
-                    style={{
-                      height: 40,
-                      backgroundColor: "#F0F8FF",
-                      borderRadius: 8,
-                      fontSize: 14,
-                    }}
-                    theme={inputTheme}
-                  />
-                  <View className="absolute right-3 top-3">
-                    <ChevronDownIcon size={18} color="#A0AEC0" />
-                  </View>
-                </View>
+                <TextInput
+                  value="11/07/2002"
+                  disabled
+                  mode="outlined"
+                  style={inputStyles}
+                  theme={inputTheme}
+                />
               </View>
-            </View>
 
-            <View className="flex-row gap-4">
               <View className="flex-1">
                 <Text className="text-md font-semibold text-black mb-1">
                   Gender <Text className="text-red-600">*</Text>
                 </Text>
                 <View className="relative">
                   <TextInput
-                    value="Female"
+                    value="Rather not say"
                     disabled
                     mode="outlined"
-                    style={{
-                      height: 40,
-                      backgroundColor: "#F0F8FF",
-                      borderRadius: 8,
-                      fontSize: 14,
-                    }}
+                    style={inputStyles}
                     theme={inputTheme}
                   />
                   <View className="absolute right-3 top-3">
@@ -223,47 +171,22 @@ export default function Information() {
                   </View>
                 </View>
               </View>
-
-              <View className="flex-1">
-                <Text className="text-md font-semibold text-black mb-1">
-                  Birthplace <Text className="text-red-600">*</Text>
-                </Text>
-                <TextInput
-                  value="Manila"
-                  disabled
-                  mode="outlined"
-                  style={{
-                    height: 40,
-                    backgroundColor: "#F0F8FF",
-                    borderRadius: 8,
-                    fontSize: 14,
-                  }}
-                  theme={inputTheme}
-                />
-              </View>
             </View>
 
-            <View className="flex-row gap-4">
-              <View className="flex-1">
-                <Text className="text-md font-semibold text-black mb-1">
-                  Civil Status <Text className="text-red-600">*</Text>
-                </Text>
-                <View className="relative">
-                  <TextInput
-                    value="Philippines"
-                    disabled
-                    mode="outlined"
-                    style={{
-                      height: 40,
-                      backgroundColor: "#F0F8FF",
-                      borderRadius: 8,
-                      fontSize: 14,
-                    }}
-                    theme={inputTheme}
-                  />
-                  <View className="absolute right-3 top-3">
-                    <ChevronDownIcon size={18} color="#A0AEC0" />
-                  </View>
+            <View className="flex-1">
+              <Text className="text-md font-semibold text-black mb-1">
+                Civil Status <Text className="text-red-600">*</Text>
+              </Text>
+              <View className="relative">
+                <TextInput
+                  value="Single"
+                  disabled
+                  mode="outlined"
+                  style={inputStyles}
+                  theme={inputTheme}
+                />
+                <View className="absolute right-3 top-3">
+                  <ChevronDownIcon size={18} color="#A0AEC0" />
                 </View>
               </View>
             </View>
@@ -276,13 +199,7 @@ export default function Information() {
                 value="09953090548"
                 disabled
                 mode="outlined"
-                style={{
-                  width: "100%",
-                  height: 40,
-                  backgroundColor: "#F0F8FF",
-                  borderRadius: 8,
-                  fontSize: 14,
-                }}
+                style={inputStyles}
                 theme={inputTheme}
               />
             </View>
@@ -295,13 +212,7 @@ export default function Information() {
                 value="09953090548"
                 disabled
                 mode="outlined"
-                style={{
-                  width: "100%",
-                  height: 40,
-                  backgroundColor: "#F0F8FF",
-                  borderRadius: 8,
-                  fontSize: 14,
-                }}
+                style={inputStyles}
                 theme={inputTheme}
               />
             </View>
@@ -311,16 +222,10 @@ export default function Information() {
                 Email Address <Text className="text-red-600">*</Text>
               </Text>
               <TextInput
-                value="09953090548"
+                value="alexandra@example.com"
                 disabled
                 mode="outlined"
-                style={{
-                  width: "100%",
-                  height: 40,
-                  backgroundColor: "#F0F8FF",
-                  borderRadius: 8,
-                  fontSize: 14,
-                }}
+                style={inputStyles}
                 theme={inputTheme}
               />
             </View>
@@ -330,6 +235,14 @@ export default function Information() {
     </View>
   );
 }
+
+const inputStyles = {
+  width: "100%" as DimensionValue,
+  height: 40,
+  backgroundColor: "#F8FCFF",
+  borderRadius: 8,
+  fontSize: 14,
+};
 
 const inputTheme = {
   colors: {

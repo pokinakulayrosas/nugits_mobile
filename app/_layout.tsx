@@ -14,7 +14,7 @@ export default function Layout() {
   // }, [router]);
     
   // development route
-    router.replace('/preAuth/Welcome'); // Redirect to preAuth route
+    router.replace('/postAuth/Clearance'); // Redirect to preAuth route
   }, [router]);
 
   return (
