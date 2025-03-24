@@ -8,7 +8,7 @@ export default function Layout() {
 
   useEffect(() => {
     // Redirect user when they open the app
-    router.replace("/postAuth/Clearance");
+    router.replace("/postAuth/Journal");
   }, [router]);
 
   return (
