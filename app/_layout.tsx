@@ -1,25 +1,21 @@
-import { Slot, useRouter } from 'expo-router';
-import React, { useEffect } from 'react';
-import { View } from 'react-native';
+import { Slot, useRouter } from "expo-router";
+import React, { useEffect } from "react";
+import { View } from "react-native";
+import { PortalHost } from "@rn-primitives/portal"; // Import PortalHost
 
 export default function Layout() {
   const router = useRouter();
 
   useEffect(() => {
-
-    // ito ang route na magl-load kapag inopen ng user ang App ninyo
-
-    // UNCOMMENT KAPAG GUSTO MO IBALIK SA DEFAULT
-  //   router.replace('/preAuth'); // Redirect to preAuth route
-  // }, [router]);
-    
-  // development route
-    router.replace('/postAuth/Clearance'); // Redirect to preAuth route
+    // Redirect user when they open the app
+    router.replace("/postAuth/Clearance");
   }, [router]);
 
   return (
     <View style={{ flex: 1 }}>
       <Slot />
+      {/* Add PortalHost here to be accessible in the entire app */}
+      <PortalHost />
     </View>
   );
 }
