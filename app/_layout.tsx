@@ -1,13 +1,13 @@
 import { Slot, useRouter } from "expo-router";
 import React, { useEffect } from "react";
 import { View } from "react-native";
-import { PortalHost } from "@rn-primitives/portal"; // Import PortalHost
+import { PortalHost } from "@rn-primitives/portal"; 
 
 export default function Layout() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect user when they open the app
+    // PALITAN MO YUNG ROUTE PAG GUSTO
     router.replace("/journal_pages/AgreementJournal");
   }, [router]);
 

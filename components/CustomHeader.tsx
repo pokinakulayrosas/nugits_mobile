@@ -33,13 +33,13 @@ export default function CustomHeader({ darkMode, toggleDarkMode }: any) {
       </TouchableOpacity>
 
 
-      <Text className="text-md ml-32 text-white"
+      <Text className="text-md ml-24 text-white"
       >
         {getToday()}
       </Text>
 
     
-      <View style={{ flexDirection: "row", gap: 10 }}>
+      <View className="flex-row gap-4 ">
         <TouchableOpacity onPress={toggleDarkMode}>
           <Ionicons name={darkMode ? "sunny-outline" : "moon-outline"} size={24} color="white" />
         </TouchableOpacity>

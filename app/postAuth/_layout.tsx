@@ -25,7 +25,7 @@ export default function Layout() {
             <DrawerToggleButton tintColor="white" />
           ),
           headerTitle: () => (
-            <Text className="text-md ml-32 text-white">{getToday()}</Text>
+            <Text className="text-md ml-28 text-white">{getToday()}</Text>
           ),
           headerRight: () => (
             <View className="flex-row gap-4 pr-4">
